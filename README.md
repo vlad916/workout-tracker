@@ -20,11 +20,11 @@ When the user loads the page, they should be given the option to create a new wo
 * Html, CSS, Javascript
 ___
 
-<img src="public/assets/image/1.png">
+<img src="public/assets/images/image1.png">
 
 ___
 
-<img src="public/assets/image/1.png">
+<img src="public/assets/images/image2.png">
 
 ___
 
