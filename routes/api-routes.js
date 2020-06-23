@@ -9,6 +9,7 @@ String.prototype.toObjectId = function () {
 
 module.exports = function (app) {
 
+    // Route to get all the workouts
     app.get('/api/workouts', (req, res) => {
         db.Workout.find({})
             .sort({ 'day': 1 })
@@ -20,6 +21,7 @@ module.exports = function (app) {
             })
     });
 
+    // Route to create/add new workouts
     app.post('/api/workouts', (req, res) => {
         const workout = new db.Workout();
         db.Workout.create(workout)
@@ -31,6 +33,7 @@ module.exports = function (app) {
             })
     });
 
+    // Route for the new exercises that will be added to the workouts
     app.put('/api/workouts/:id', (req, res) => {
         console.log(req.body);
         db.Workout.update({
@@ -43,6 +46,7 @@ module.exports = function (app) {
             })
     });
 
+    // Route to get data in workout from a specific range
     app.get('/api/workouts/range', (req, res) => {
         db.Workout.find({})
             .sort({ 'day': 1 })
@@ -54,14 +58,18 @@ module.exports = function (app) {
             })
     });
 
+
+// Route to load index.html 
 app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, '../public/index.html'));
 });
 
+// Route to load exercise.html
 app.get('/exercise', (req, res) => {
     res.sendFile(path.join(__dirname, '../public/exercise.html'));
 });
 
+// Route to load stats.html
 app.get('/stats', (req, res) => {
     res.sendFile(path.join(__dirname, '../public/stats.html'));
 });
