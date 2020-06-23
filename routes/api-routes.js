@@ -1,5 +1,4 @@
 const db = require('../models');
-const router = express.Router();
 const path = require('path');
 
 
@@ -8,8 +7,9 @@ String.prototype.toObjectId = function () {
     return new ObjectId(this.toString());
 };
 
+module.exports = function (app) {
 
-router.get('/api/workouts', (req, res) => {
+app.get('/api/workouts', (req, res) => {
     db.Workout.find({})
         .sort({'day': 1 })
         .then(dbWorkout => {
@@ -20,7 +20,7 @@ router.get('/api/workouts', (req, res) => {
         })
 });
 
-router.post('/api/workouts', (req, res) => {
+app.post('/api/workouts', (req, res) => {
     const workout = new db.Workout();
     db.Workout.create(workout)
         .then(dbWorkout => {
@@ -32,29 +32,9 @@ router.post('/api/workouts', (req, res) => {
 });
 
 
-router.put('/api/workouts/:id', (req, res) => {
-    console.log(req.body);
-    db.Workout.update({
-        _id: req.params.id.toObjectId()
-    }, {
-        $push: { exercises: req.body }
-    })
-    .then(function (data){
-        res.json(data);
-    })
-});
 
-router.get('/api/workouts/range', (req, res) => {
-    db.Workout.find({})
-        .sort({ 'day': 1 })
-        .then(dbWorkout => {
-            res.json(dbWorkout);
-        })
-        .catch(err => {
-            res.json(err);
-        })
-});
 
+}
 
 
 module.exports = router;
