@@ -31,6 +31,17 @@ app.post('/api/workouts', (req, res) => {
         })
 });
 
+app.put('/api/workouts/:id', (req, res) => {
+    console.log(req.body);
+    db.Workout.update({
+        _id: req.params.id.toObjectId()
+    }, {
+        $push: { exercises: req.body }
+    })
+    .then(function (data){
+        res.json(data);
+    })
+});
 
 
 
