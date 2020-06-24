@@ -17,10 +17,9 @@ app.use(express.static("public"));
 require('./routes/api-routes.js')(app);
 
 // Mongodb connection
-mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/workout", { 
-    useNewUrlParser: true,
-    useUnifiedTopology: true
-});
+const MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/workout";
+
+mongoose.connect(MONGODB_URI);
 
 // Starts the server
 app.listen(PORT, () => console.log (`Server listening on PORT ${PORT}`));
