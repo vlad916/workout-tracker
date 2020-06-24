@@ -17,7 +17,7 @@ module.exports = function (app) {
                 res.json(dbWorkout);
             })
             .catch(err => {
-                res.json(err);
+                res.status(400).json(err);
             })
     });
 
@@ -29,7 +29,7 @@ module.exports = function (app) {
                 res.json(dbWorkout)
             })
             .catch(err => {
-                res.json(err);
+                res.status(400).json(err);
             })
     });
 
@@ -41,8 +41,11 @@ module.exports = function (app) {
         }, {
             $push: { exercises: req.body }
         })
-            .then(function (data) {
+            .then((data) => {
                 res.json(data);
+            })
+            .catch (err => {
+                res.status(400).json(err);
             })
     });
 
@@ -54,7 +57,7 @@ module.exports = function (app) {
                 res.json(dbWorkout);
             })
             .catch(err => {
-                res.json(err);
+                res.status(400).json(err);
             })
     });
 
