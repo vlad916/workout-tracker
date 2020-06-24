@@ -2,6 +2,7 @@ const express = require('express');
 const logger = require ('morgan');
 const mongoose = require ('mongoose');
 
+
 // Sets up port for the server
 const PORT = process.env.PORT || 5000;
 
@@ -19,7 +20,7 @@ require('./routes/api-routes.js')(app);
 // Mongodb connection
 const MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/workout";
 
-mongoose.connect(MONGODB_URI);
+mongoose.connect = MONGODB_URI;
 
 // Starts the server
 app.listen(PORT, () => console.log (`Server listening on PORT ${PORT}`));
